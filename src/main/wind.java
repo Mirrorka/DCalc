@@ -46,7 +46,7 @@ public class wind extends JFrame {
 	private JTable table;
 	private JTextPane t_prok_out;
 	private JTextPane t_ost_vklad;
-	private JComboBox с_type_proc;
+	private JComboBox СЃ_type_proc;
 
 	/**
 	 * Launch the application.
@@ -72,15 +72,15 @@ public class wind extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public wind() {//главная функция
-		initComp();//создание компонентов
-		create_event();//обработка событий
+	public wind() {//РіР»Р°РІРЅР°СЏ С„СѓРЅРєС†РёСЏ
+		initComp();//СЃРѕР·РґР°РЅРёРµ РєРѕРјРїРѕРЅРµРЅС‚РѕРІ
+		create_event();//РѕР±СЂР°Р±РѕС‚РєР° СЃРѕР±С‹С‚РёР№
 	}
 	
 	
 //
-//ИНИЦИАЛИЗАЦИЯ
-//(по большей части код из конструктора)
+//РРќРР¦РРђР›РР—РђР¦РРЇ
+//(РїРѕ Р±РѕР»СЊС€РµР№ С‡Р°СЃС‚Рё РєРѕРґ РёР· РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°)
 	private void initComp()
 	{
 		setTitle("\u0414\u0435\u043F\u043E\u0437\u0438\u0442\u043D\u044B\u0439 \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440");
@@ -98,14 +98,14 @@ public class wind extends JFrame {
 		
 		JLabel l_date = new JLabel("\u0414\u0430\u0442\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F:");
 		
-		//представление даты
+		//РїСЂРµРґСЃС‚Р°РІР»РµРЅРёРµ РґР°С‚С‹
         LocalDate date = LocalDate.now();
 
         int year = date.getYear();
         Month month = date.getMonth();
         int day = date.getDayOfMonth();
 		
-        //ввод даты в текстбоксы
+        //РІРІРѕРґ РґР°С‚С‹ РІ С‚РµРєСЃС‚Р±РѕРєСЃС‹
 		t_day = new JTextField();
 		t_day.setText(""+day);
 		t_day.setColumns(10);
@@ -118,7 +118,7 @@ public class wind extends JFrame {
 		t_month.setText(""+(month.ordinal()+1));
 		t_month.setColumns(10);
 		
-		//автогенерация
+		//Р°РІС‚РѕРіРµРЅРµСЂР°С†РёСЏ
 		l_time_vklad = new JLabel("\u0421\u0440\u043E\u043A \u0432\u043A\u043B\u0430\u0434\u0430:");
 		
 		t_time_vklad = new JTextField();
@@ -143,10 +143,10 @@ public class wind extends JFrame {
 		
 		JLabel label_1 = new JLabel("\u0412\u044B\u043F\u043B\u0430\u0442\u0430 \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432:");
 		
-		с_type_proc = new JComboBox();
-		с_type_proc.setToolTipText("\u0412\u044B\u043F\u043B\u0430\u0442\u0430 \u0438\u043C\u0435\u0435\u0442 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u0438 \u043A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u0438 \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432");
-		с_type_proc.setEnabled(false);
-		с_type_proc.setModel(new DefaultComboBoxModel(Proc.values()));
+		СЃ_type_proc = new JComboBox();
+		СЃ_type_proc.setToolTipText("\u0412\u044B\u043F\u043B\u0430\u0442\u0430 \u0438\u043C\u0435\u0435\u0442 \u0437\u043D\u0430\u0447\u0435\u043D\u0438\u0435 \u0442\u043E\u043B\u044C\u043A\u043E \u043F\u0440\u0438 \u043A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0437\u0430\u0446\u0438\u0438 \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432");
+		СЃ_type_proc.setEnabled(false);
+		СЃ_type_proc.setModel(new DefaultComboBoxModel(Proc.values()));
 		
 		b_go = new JButton("\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C");
 
@@ -208,7 +208,7 @@ public class wind extends JFrame {
 							.addContainerGap()
 							.addComponent(label_1)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(с_type_proc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addComponent(СЃ_type_proc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -260,7 +260,7 @@ public class wind extends JFrame {
 							.addPreferredGap(ComponentPlacement.RELATED)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
 								.addComponent(label_1)
-								.addComponent(с_type_proc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addComponent(СЃ_type_proc, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 							.addPreferredGap(ComponentPlacement.UNRELATED)
 							.addComponent(b_go)
 							.addGap(13))
@@ -278,104 +278,104 @@ public class wind extends JFrame {
 	}
 	
 	//
-	//ОБРАБОТКА СОБЫТИЙ
+	//РћР‘Р РђР‘РћРўРљРђ РЎРћР‘Р«РўРР™
 	//
 	private void create_event()
 	{
 		
-		//ОБРАБОТКА ФЛАЖКА
+		//РћР‘Р РђР‘РћРўРљРђ Р¤Р›РђР–РљРђ
 		ch_capital.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if (ch_capital.isSelected()) //без капитализации вывод недоступен (т.к ничего не меняет)
-				{с_type_proc.setEnabled(true);}else
-				{с_type_proc.setEnabled(false);}
+				if (ch_capital.isSelected()) //Р±РµР· РєР°РїРёС‚Р°Р»РёР·Р°С†РёРё РІС‹РІРѕРґ РЅРµРґРѕСЃС‚СѓРїРµРЅ (С‚.Рє РЅРёС‡РµРіРѕ РЅРµ РјРµРЅСЏРµС‚)
+				{СЃ_type_proc.setEnabled(true);}else
+				{СЃ_type_proc.setEnabled(false);}
 			}
 		});
 		
-		//ОБРАБОТКА КНОПКИ
+		//РћР‘Р РђР‘РћРўРљРђ РљРќРћРџРљР
 		b_go.addActionListener(new ActionListener() {
 			
-			public void actionPerformed(ActionEvent arg0) {//нажатие на кнопку "Рассчитать"
-				Deposit deposit = new Deposit(); //создаём новый класс депозита
-				//ввод значений и проверка
+			public void actionPerformed(ActionEvent arg0) {//РЅР°Р¶Р°С‚РёРµ РЅР° РєРЅРѕРїРєСѓ "Р Р°СЃСЃС‡РёС‚Р°С‚СЊ"
+				Deposit deposit = new Deposit(); //СЃРѕР·РґР°С‘Рј РЅРѕРІС‹Р№ РєР»Р°СЃСЃ РґРµРїРѕР·РёС‚Р°
+				//РІРІРѕРґ Р·РЅР°С‡РµРЅРёР№ Рё РїСЂРѕРІРµСЂРєР°
 				//
-				//ОБРАБОТКА ВВОДА
+				//РћР‘Р РђР‘РћРўРљРђ Р’Р’РћР”Рђ
 				//
 				
-				try{//сумма вклада, переменная deposit
+				try{//СЃСѓРјРјР° РІРєР»Р°РґР°, РїРµСЂРµРјРµРЅРЅР°СЏ deposit
 					  deposit.deposit = Integer.parseInt(t_sum.getText());
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Неверно указана сумма вклада");
+						JOptionPane.showMessageDialog(null, "РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅР° СЃСѓРјРјР° РІРєР»Р°РґР°");
 					}
 				
-				try{//день
+				try{//РґРµРЅСЊ
 					  int day = Integer.parseInt(t_day.getText());
 					  
-					  if (day<1 || day>31) {throw new NumberFormatException();}else//генерируем исключение если выходим за пределы
+					  if (day<1 || day>31) {throw new NumberFormatException();}else//РіРµРЅРµСЂРёСЂСѓРµРј РёСЃРєР»СЋС‡РµРЅРёРµ РµСЃР»Рё РІС‹С…РѕРґРёРј Р·Р° РїСЂРµРґРµР»С‹
 					  {deposit.day = day;}
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Введите день числом от 1 до 31");
+						JOptionPane.showMessageDialog(null, "Р’РІРµРґРёС‚Рµ РґРµРЅСЊ С‡РёСЃР»РѕРј РѕС‚ 1 РґРѕ 31");
 					}
-				try{//месяц
+				try{//РјРµСЃСЏС†
 					  int month = Integer.parseInt(t_month.getText());
 					  
 					  if (month<1 || month>12) {throw new NumberFormatException();}else 
 					  {deposit.month = month;}
 					  
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Введите месяц числом от 1 до 12");
+						JOptionPane.showMessageDialog(null, "Р’РІРµРґРёС‚Рµ РјРµСЃСЏС† С‡РёСЃР»РѕРј РѕС‚ 1 РґРѕ 12");
 					}
-				try{//год
+				try{//РіРѕРґ
 					  int year = Integer.parseInt(t_year.getText());
 					  
 					  if (year<0) {throw new NumberFormatException();}else
 					  {deposit.year = year;}
 					  
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Введите год числом больше 0");
+						JOptionPane.showMessageDialog(null, "Р’РІРµРґРёС‚Рµ РіРѕРґ С‡РёСЃР»РѕРј Р±РѕР»СЊС€Рµ 0");
 					}
 				
-				try{//срок вклада
+				try{//СЃСЂРѕРє РІРєР»Р°РґР°
 					  int term = Integer.parseInt(t_time_vklad.getText());
 					  
 					  if (term<0) {throw new NumberFormatException();}else
 					  {deposit.term = term;}
 					
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Введите срок числом больше 0");
+						JOptionPane.showMessageDialog(null, "Р’РІРµРґРёС‚Рµ СЃСЂРѕРє С‡РёСЃР»РѕРј Р±РѕР»СЊС€Рµ 0");
 					}
-				try{//процентная ставка
+				try{//РїСЂРѕС†РµРЅС‚РЅР°СЏ СЃС‚Р°РІРєР°
 					  int interest = Integer.parseInt(t_proc.getText());
 					  
 					  if (interest<0) {throw new NumberFormatException();}else
 					  {deposit.interest = interest;}
 					  
 					} catch (NumberFormatException e) {
-						JOptionPane.showMessageDialog(null, "Введите число без знака процента");
+						JOptionPane.showMessageDialog(null, "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ Р±РµР· Р·РЅР°РєР° РїСЂРѕС†РµРЅС‚Р°");
 					}
-				deposit.capitaliz = ch_capital.isSelected(); //капитализация
+				deposit.capitaliz = ch_capital.isSelected(); //РєР°РїРёС‚Р°Р»РёР·Р°С†РёСЏ
 				
-				deposit.proc = с_type_proc.getSelectedIndex();//тип вывода, 0 - ежемесячно,1 - ежеквартально, 2 - конец срока
+				deposit.proc = СЃ_type_proc.getSelectedIndex();//С‚РёРї РІС‹РІРѕРґР°, 0 - РµР¶РµРјРµСЃСЏС‡РЅРѕ,1 - РµР¶РµРєРІР°СЂС‚Р°Р»СЊРЅРѕ, 2 - РєРѕРЅРµС† СЃСЂРѕРєР°
 				
 				//
-				//ВЫЧИСЛЕНИЯ
+				//Р’Р«Р§РРЎР›Р•РќРРЇ
 				//
 				deposit.Calculate();
 				
 				//
-				//ВЫВОД ИНФОРМАЦИИ
+				//Р’Р«Р’РћР” РРќР¤РћР РњРђР¦РР
 				//
-				//текстбоксы
-				t_prok_out.setText(String.format("%.2f",deposit.finalproc));//форматный вывод
+				//С‚РµРєСЃС‚Р±РѕРєСЃС‹
+				t_prok_out.setText(String.format("%.2f",deposit.finalproc));//С„РѕСЂРјР°С‚РЅС‹Р№ РІС‹РІРѕРґ
 				t_ost_vklad.setText(String.format("%.2f", deposit.deposit));
-				//таблица
-						table.setModel(new DefaultTableModel(//инициализация таблицы
-				deposit.table,//двухмерным массивом из deposit
+				//С‚Р°Р±Р»РёС†Р°
+						table.setModel(new DefaultTableModel(//РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С‚Р°Р±Р»РёС†С‹
+				deposit.table,//РґРІСѓС…РјРµСЂРЅС‹Рј РјР°СЃСЃРёРІРѕРј РёР· deposit
 				new String[] {
-					"Дата", "Проценты", "Остаток" //и заголовком
+					"Р”Р°С‚Р°", "РџСЂРѕС†РµРЅС‚С‹", "РћСЃС‚Р°С‚РѕРє" //Рё Р·Р°РіРѕР»РѕРІРєРѕРј
 				}
 			));
-			deposit = null;//очистка класса, на всякий случай
+			deposit = null;//РѕС‡РёСЃС‚РєР° РєР»Р°СЃСЃР°, РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№
 			}
 		
 		});

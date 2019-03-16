@@ -4,33 +4,33 @@ import java.time.LocalDate;
 import java.time.Period;
 import java.time.format.DateTimeFormatter;
 //
-//основной класс для работы с депозитом
+//РѕСЃРЅРѕРІРЅРѕР№ РєР»Р°СЃСЃ РґР»СЏ СЂР°Р±РѕС‚С‹ СЃ РґРµРїРѕР·РёС‚РѕРј
 //
 public class Deposit {
-	double deposit; //сумма
+	double deposit; //СЃСѓРјРјР°
 	int year;
 	int month;
 	int day;
-	int term; //срок
-	double interest; //процентная ставка
-	boolean capitaliz; //капитализация
-	int proc; //0 - помесячный забор, 1 - через 3 месяца, 2 - в конце срока
-	String[][] table; //таблица с датой, процентами и остатком
+	int term; //СЃСЂРѕРє
+	double interest; //РїСЂРѕС†РµРЅС‚РЅР°СЏ СЃС‚Р°РІРєР°
+	boolean capitaliz; //РєР°РїРёС‚Р°Р»РёР·Р°С†РёСЏ
+	int proc; //0 - РїРѕРјРµСЃСЏС‡РЅС‹Р№ Р·Р°Р±РѕСЂ, 1 - С‡РµСЂРµР· 3 РјРµСЃСЏС†Р°, 2 - РІ РєРѕРЅС†Рµ СЃСЂРѕРєР°
+	String[][] table; //С‚Р°Р±Р»РёС†Р° СЃ РґР°С‚РѕР№, РїСЂРѕС†РµРЅС‚Р°РјРё Рё РѕСЃС‚Р°С‚РєРѕРј
 	
-	private LocalDate _startdate; //начальная дата
-	private LocalDate _stopdate; //конечная
-	private int _periods; //кол-во месяцев (проценты добавляются помесячно)
-	double finalproc=0; //итоговые проценты
+	private LocalDate _startdate; //РЅР°С‡Р°Р»СЊРЅР°СЏ РґР°С‚Р°
+	private LocalDate _stopdate; //РєРѕРЅРµС‡РЅР°СЏ
+	private int _periods; //РєРѕР»-РІРѕ РјРµСЃСЏС†РµРІ (РїСЂРѕС†РµРЅС‚С‹ РґРѕР±Р°РІР»СЏСЋС‚СЃСЏ РїРѕРјРµСЃСЏС‡РЅРѕ)
+	double finalproc=0; //РёС‚РѕРіРѕРІС‹Рµ РїСЂРѕС†РµРЅС‚С‹
 	
-	private void DayInPeriod()//считаем время от вложения вклада до забора
+	private void DayInPeriod()//СЃС‡РёС‚Р°РµРј РІСЂРµРјСЏ РѕС‚ РІР»РѕР¶РµРЅРёСЏ РІРєР»Р°РґР° РґРѕ Р·Р°Р±РѕСЂР°
 	{
-		_startdate = LocalDate.of(year, month, day); //конвертируем дату из формата ввода в удобный
+		_startdate = LocalDate.of(year, month, day); //РєРѕРЅРІРµСЂС‚РёСЂСѓРµРј РґР°С‚Сѓ РёР· С„РѕСЂРјР°С‚Р° РІРІРѕРґР° РІ СѓРґРѕР±РЅС‹Р№
 		_stopdate = _startdate; 
-		_stopdate = _stopdate.plusDays(term);//начальная дата + срок = финальная дата
+		_stopdate = _stopdate.plusDays(term);//РЅР°С‡Р°Р»СЊРЅР°СЏ РґР°С‚Р° + СЃСЂРѕРє = С„РёРЅР°Р»СЊРЅР°СЏ РґР°С‚Р°
 		Period period = Period.between(_startdate, _stopdate);
-		_periods = 0; //на всякий случай
-		_periods += period.getYears()*12; //добавляем года, т.к месяцы ниже не могут быть выше 12 (почему то)
-		_periods += period.getMonths()+1;//считаем месяцы (TODO: возможно заменить на выборочный период)
+		_periods = 0; //РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№
+		_periods += period.getYears()*12; //РґРѕР±Р°РІР»СЏРµРј РіРѕРґР°, С‚.Рє РјРµСЃСЏС†С‹ РЅРёР¶Рµ РЅРµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РІС‹С€Рµ 12 (РїРѕС‡РµРјСѓ С‚Рѕ)
+		_periods += period.getMonths()+1;//СЃС‡РёС‚Р°РµРј РјРµСЃСЏС†С‹ (TODO: РІРѕР·РјРѕР¶РЅРѕ Р·Р°РјРµРЅРёС‚СЊ РЅР° РІС‹Р±РѕСЂРѕС‡РЅС‹Р№ РїРµСЂРёРѕРґ)
 	}
 	
 	public void Calculate()
@@ -38,23 +38,23 @@ public class Deposit {
 		if (capitaliz)
 		{}
 		else
-		{SimpleInterest();}//если не капитализация, то это простые проценты
+		{SimpleInterest();}//РµСЃР»Рё РЅРµ РєР°РїРёС‚Р°Р»РёР·Р°С†РёСЏ, С‚Рѕ СЌС‚Рѕ РїСЂРѕСЃС‚С‹Рµ РїСЂРѕС†РµРЅС‚С‹
 	}
 	
-	public void SimpleInterest()//простые проценты, для них выдача/невыдача денег не важна, так что proc игнорируется
+	public void SimpleInterest()//РїСЂРѕСЃС‚С‹Рµ РїСЂРѕС†РµРЅС‚С‹, РґР»СЏ РЅРёС… РІС‹РґР°С‡Р°/РЅРµРІС‹РґР°С‡Р° РґРµРЅРµРі РЅРµ РІР°Р¶РЅР°, С‚Р°Рє С‡С‚Рѕ proc РёРіРЅРѕСЂРёСЂСѓРµС‚СЃСЏ
 	{
-		DayInPeriod();//подсчёт срока
-		table = new String[_periods][3]; //инициализация таблицы
+		DayInPeriod();//РїРѕРґСЃС‡С‘С‚ СЃСЂРѕРєР°
+		table = new String[_periods][3]; //РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ С‚Р°Р±Р»РёС†С‹
 		
-		for(int i=0; i<_periods;i++) //добавление процентов каждый период
+		for(int i=0; i<_periods;i++) //РґРѕР±Р°РІР»РµРЅРёРµ РїСЂРѕС†РµРЅС‚РѕРІ РєР°Р¶РґС‹Р№ РїРµСЂРёРѕРґ
 		{
 			
 			//double money = deposit*((interest/100)/12);
-			double money = deposit*((interest/100)*((double)_startdate.lengthOfMonth()/_startdate.lengthOfYear())); //подневный расчет
-			finalproc += money; //финальные проценты - сумма всех процентов
-			_startdate = _startdate.plusMonths(1);//добавление месяца
-			table[i][0]=_startdate.format(DateTimeFormatter.ofPattern("d/MM/YY"));//форматированный вывод даты в первую колонку
-			table[i][1]=String.format("%.2f",money); //формат до 2х знаков после запятой
+			double money = deposit*((interest/100)*((double)_startdate.lengthOfMonth()/_startdate.lengthOfYear())); //РїРѕРґРЅРµРІРЅС‹Р№ СЂР°СЃС‡РµС‚
+			finalproc += money; //С„РёРЅР°Р»СЊРЅС‹Рµ РїСЂРѕС†РµРЅС‚С‹ - СЃСѓРјРјР° РІСЃРµС… РїСЂРѕС†РµРЅС‚РѕРІ
+			_startdate = _startdate.plusMonths(1);//РґРѕР±Р°РІР»РµРЅРёРµ РјРµСЃСЏС†Р°
+			table[i][0]=_startdate.format(DateTimeFormatter.ofPattern("d/MM/YY"));//С„РѕСЂРјР°С‚РёСЂРѕРІР°РЅРЅС‹Р№ РІС‹РІРѕРґ РґР°С‚С‹ РІ РїРµСЂРІСѓСЋ РєРѕР»РѕРЅРєСѓ
+			table[i][1]=String.format("%.2f",money); //С„РѕСЂРјР°С‚ РґРѕ 2С… Р·РЅР°РєРѕРІ РїРѕСЃР»Рµ Р·Р°РїСЏС‚РѕР№
 			table[i][2]=String.format("%.2f",deposit);
 			
 		}
