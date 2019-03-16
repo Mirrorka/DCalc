@@ -10,6 +10,7 @@ import java.awt.Window.Type;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
@@ -22,6 +23,8 @@ import java.time.DayOfWeek;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import javax.swing.JTextPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class wind extends JFrame {
 
@@ -38,6 +41,9 @@ public class wind extends JFrame {
 	private JLabel label_2;
 	private JLabel label_3;
 	private JLabel label_4;
+	private JButton b_go;
+	private JCheckBox ch_capital;
+	private JComboBox с_type_proc;
 
 	/**
 	 * Launch the application.
@@ -63,7 +69,13 @@ public class wind extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public wind() {
+	public wind() {//главна€ функци€
+		initComp();//создание компонентов
+		create_event();//обработка событий
+	}
+		
+	private void initComp()
+	{
 		setTitle("\u0414\u0435\u043F\u043E\u0437\u0438\u0442\u043D\u044B\u0439 \u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 600, 300);
@@ -79,6 +91,7 @@ public class wind extends JFrame {
 		
 		JLabel l_date = new JLabel("\u0414\u0430\u0442\u0430 \u043E\u0442\u043A\u0440\u044B\u0442\u0438\u044F:");
 		
+		//представление даты
         LocalDate date = LocalDate.now();
 
         int year = date.getYear();
@@ -89,6 +102,7 @@ public class wind extends JFrame {
         int monthLength = date.lengthOfMonth();
         boolean leapYear = date.isLeapYear();
 		
+        //ввод даты в текстбоксы
 		t_day = new JTextField();
 		t_day.setText(""+day);
 		t_day.setColumns(10);
@@ -101,6 +115,7 @@ public class wind extends JFrame {
 		t_month.setText(""+(month.ordinal()+1));
 		t_month.setColumns(10);
 		
+		//автогенераци€
 		l_time_vklad = new JLabel("\u0421\u0440\u043E\u043A \u0432\u043A\u043B\u0430\u0434\u0430:");
 		
 		t_time_vklad = new JTextField();
@@ -119,25 +134,26 @@ public class wind extends JFrame {
 		
 		label_2 = new JLabel("%");
 		
-		JCheckBox ch_capital = new JCheckBox("\u041A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0446\u0430\u0446\u0438\u044F \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432");
+		ch_capital = new JCheckBox("\u041A\u0430\u043F\u0438\u0442\u0430\u043B\u0438\u0446\u0430\u0446\u0438\u044F \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432");
 		ch_capital.setToolTipText("\u041F\u0440\u043E\u0446\u0435\u043D\u0442\u044B \u0441 \u0443\u0441\u0442\u0430\u043D\u043E\u0432\u043B\u0435\u043D\u043D\u043E\u0439 \u043F\u0435\u0440\u0435\u043E\u0434\u0438\u0447\u043D\u043E\u0441\u0442\u044C\u044E \u0434\u043E\u0431\u0430\u0432\u043B\u044F\u044E\u0442\u0441\u044F \u043A \u0432\u043A\u043B\u0430\u0434\u0443");
 		
 		JLabel label_1 = new JLabel("\u0412\u044B\u043F\u043B\u0430\u0442\u0430 \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432:");
 		
-		JComboBox с_type_proc = new JComboBox();
+		с_type_proc = new JComboBox();
 		с_type_proc.setModel(new DefaultComboBoxModel(Proc.values()));
 		
-		JButton b_go = new JButton("\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C");
+		b_go = new JButton("\u0420\u0430\u0441\u0441\u0447\u0438\u0442\u0430\u0442\u044C");
+
 		
 		label_3 = new JLabel("\u041E\u0441\u0442\u0430\u0442\u043E\u043A \u0432\u043A\u043B\u0430\u0434\u0430:");
 		
 		label_4 = new JLabel("\u0412\u044B\u043F\u043B\u0430\u0447\u0435\u043D\u043E \u043F\u0440\u043E\u0446\u0435\u043D\u0442\u043E\u0432:");
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setEditable(false);
+		JTextPane t_ost_vklad = new JTextPane();
+		t_ost_vklad.setEditable(false);
 		
-		JTextPane textPane_1 = new JTextPane();
-		textPane_1.setEditable(false);
+		JTextPane t_prok_out = new JTextPane();
+		t_prok_out.setEditable(false);
 		
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
@@ -190,11 +206,11 @@ public class wind extends JFrame {
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(label_3)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textPane, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
+							.addComponent(t_ost_vklad, GroupLayout.DEFAULT_SIZE, 203, Short.MAX_VALUE))
 						.addGroup(gl_contentPane.createSequentialGroup()
 							.addComponent(label_4)
 							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(textPane_1, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
+							.addComponent(t_prok_out, GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)))
 					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
@@ -206,7 +222,7 @@ public class wind extends JFrame {
 							.addComponent(l_sum)
 							.addComponent(t_sum, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(label_3))
-						.addComponent(textPane, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
+						.addComponent(t_ost_vklad, GroupLayout.PREFERRED_SIZE, 27, GroupLayout.PREFERRED_SIZE))
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING)
 						.addGroup(gl_contentPane.createParallelGroup(Alignment.BASELINE)
@@ -215,7 +231,7 @@ public class wind extends JFrame {
 							.addComponent(t_year, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(t_month, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 							.addComponent(label_4))
-						.addComponent(textPane_1, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+						.addComponent(t_prok_out, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 					.addGap(18)
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
@@ -239,5 +255,64 @@ public class wind extends JFrame {
 					.addGap(19))
 		);
 		contentPane.setLayout(gl_contentPane);
+	}
+	
+	private void create_event()
+	{
+		b_go.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {//нажатие на кнопку "–ассчитать"
+				//ввод значений и проверка
+				try{//сумма вклада, переменна€ deposit
+					  int deposit = Integer.parseInt(t_sum.getText());
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "Ќеверно указана сумма вклада");
+					}
+				
+				try{//день
+					  int day = Integer.parseInt(t_day.getText());
+					  
+					  if (day<1 || day>31) {throw new NumberFormatException();}//генерируем исключение если выходим за пределы
+					  
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "¬ведите день числом от 1 до 31");
+					}
+				try{//мес€ц
+					  int month = Integer.parseInt(t_month.getText());
+					  
+					  if (month<1 || month>12) {throw new NumberFormatException();}
+					  
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "¬ведите мес€ц числом от 1 до 12");
+					}
+				try{//год
+					  int year = Integer.parseInt(t_year.getText());
+					  
+					  if (year<0) {throw new NumberFormatException();}
+					  
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "¬ведите год числом больше 0");
+					}
+				
+				try{//срок вклада
+					  int term = Integer.parseInt(t_time_vklad.getText());
+					  
+					  if (term<0) {throw new NumberFormatException();}
+					  
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "¬ведите срок числом больше 0");
+					}
+				try{//процентна€ ставка
+					  int interest = Integer.parseInt(t_proc.getText());
+					  
+					  if (interest<0) {throw new NumberFormatException();}
+					  
+					} catch (NumberFormatException e) {
+						JOptionPane.showMessageDialog(null, "¬ведите число без знака процента");
+					}
+				boolean capital = ch_capital.isEnabled(); //капитализаци€
+				int myProc = с_type_proc.getSelectedIndex();//тип вывода, 0 - ежемес€чно,1 - ежеквартально, 2 - конец срока
+				
+			}
+		});
 	}
 }
