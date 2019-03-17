@@ -3,6 +3,7 @@ package main;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
+
 //
 //основной класс для работы с депозитом
 //
@@ -31,7 +32,7 @@ public class Deposit {
 		else
 		{simpleInterest();}//если не капитализация, то это простые проценты
 	}
-	
+
 	private void dayInPeriod()//считаем время от вложения вклада до забора
 	{
 		_startdate = LocalDate.of(year, month, day); //конвертируем дату из формата ввода в удобный
@@ -95,4 +96,5 @@ public class Deposit {
 			
 		}
 	}
+	
 }
