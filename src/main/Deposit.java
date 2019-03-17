@@ -22,7 +22,7 @@ public class Deposit {
 	private LocalDate _stopdate; //конечная
 	private int _periods; //кол-во месяцев (проценты добавляются помесячно)
 	double finalproc=0; //итоговые проценты
-	
+
 	public void calculate()
 	{
 		dayInPeriod();//подсчёт срока

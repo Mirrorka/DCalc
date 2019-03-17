@@ -17,27 +17,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
  *
  */
 class Test {
-	
-	//public Deposit depo;
-/*	
-    @Before
-    public void init() {
-    	Deposit depo = new Deposit();
-    	//начальная инициализация значений
-    	depo.deposit = 1000000;
-    	depo.day = 17;
-    	depo.month = 3;
-    	depo.year = 2019;
-    	depo.interest = 10;
-    	depo.term = 365;
-    	depo.proc = 0;
-    	depo.capitaliz = false;
-    }
-    @After
-    public void tearDown() { 
-        depo = null;
-    }*/
-	
     
 	@org.junit.jupiter.api.Test
 	
