@@ -4,6 +4,7 @@
 * Марков Н.Г. 
 * Латыпов Р.А 
 * Сагитов А.Э.
+* Сираев И.Р.
 * Группа:ПИ-209з.
 * Среда разработки: Eclipce (https://www.eclipse.org/) + WindowBuilder (https://www.eclipse.org/windowbuilder/download.php)
 * Язык программирования: Java + Swing
